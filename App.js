@@ -1,51 +1,42 @@
+import 'react-native-gesture-handler';
 import React, {useState} from 'react';
 import {StyleSheet} from 'react-native';
 import {Provider as PaperProvider, BottomNavigation} from 'react-native-paper';
+import {NavigationContainer, TabActions} from '@react-navigation/native';
+import {createStackNavigator} from '@react-navigation/stack';
 
-import ReqRoute from './screens/Request';
-import HomeRoute from './screens/Home';
-import SettingRoute from './screens/Settings';
-import SugRoute from './screens/Suggest';
+import BottomTabs from './components/BottomTabs';
+import RequestDetail from './screens/RequestDetail';
+import NewRequest from './screens/NewRequest';
 
 const App = () => {
-  const [index, setIndex] = useState(0);
-  const [routes] = React.useState([
-    {key: 'home', title: '커뮤니티', icon: 'chat-processing', color: '#efefef'},
-    {key: 'req', title: '견적요청', icon: 'send', color: '#efefef'},
-    {key: 'sug', title: '견적내역', icon: 'view-list', color: '#efefef'},
-    {
-      key: 'setting',
-      title: '더보기',
-      icon: 'dots-horizontal',
-      color: '#efefef',
-    },
-  ]);
-
-  const renderScene = BottomNavigation.SceneMap({
-    home: HomeRoute,
-    req: ReqRoute,
-    sug: SugRoute,
-    setting: SettingRoute,
-  });
+  const Stack = createStackNavigator();
 
   return (
     <PaperProvider>
-      <BottomNavigation
-        activeColor="#444455"
-        inactiveColor="#aeaeae"
-        barStyle={styles.BottomNavigation}
-        navigationState={{index, routes}}
-        onIndexChange={setIndex}
-        renderScene={renderScene}
-      />
+      <NavigationContainer>
+        <Stack.Navigator>
+          <Stack.Screen
+            name="BottomTabs"
+            component={BottomTabs}
+            options={{headerShown: false}}
+          />
+          <Stack.Screen
+            name="RequestDetail"
+            component={RequestDetail}
+            options={{headerShown: false}}
+          />
+          <Stack.Screen
+            name="NewRequest"
+            component={NewRequest}
+            options={{headerShown: false}}
+          />
+        </Stack.Navigator>
+      </NavigationContainer>
     </PaperProvider>
   );
 };
 
-const styles = StyleSheet.create({
-  BottomNavigation: {
-    color: 'black',
-  },
-});
+const styles = StyleSheet.create({});
 
 export default App;
