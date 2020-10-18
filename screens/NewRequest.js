@@ -1,17 +1,6 @@
 import React, {useState} from 'react';
 import {StyleSheet, ScrollView, RefreshControl} from 'react-native';
-import {
-  Appbar,
-  List,
-  FAB,
-  Text,
-  Avatar,
-  Button,
-  Caption,
-  Card,
-  Title,
-  Paragraph,
-} from 'react-native-paper';
+import {Appbar, Text} from 'react-native-paper';
 import {Block} from 'galio-framework';
 import EvilIcons from 'react-native-vector-icons/EvilIcons';
 import Ionicons from 'react-native-vector-icons/Ionicons';
